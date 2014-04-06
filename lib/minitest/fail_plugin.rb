@@ -26,7 +26,7 @@ module Minitest
       super
       if result.assertions.zero?
         empty_test = result.method(result.name).source_location
-        e          = ::Minitest::Assertion.new "Empty test #{result}"
+        e          = ::Minitest::Assertion.new "Empty test <#{result}>"
 
         e.class.send :define_method, :location, -> { empty_test.join(":") }
 
