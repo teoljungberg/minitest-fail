@@ -28,8 +28,7 @@ module Minitest
         empty_test = result.method(result.name).source_location
         e          = ::Minitest::Assertion.new "Empty test #{result}"
 
-        e.class.send :attr_accessor, :location
-        e.location = empty_test.join(":")
+        e.class.send :define_method, :location, -> { empty_test.join(":") }
 
         result.failures << e
         self.results    << result
