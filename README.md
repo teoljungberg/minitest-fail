@@ -23,7 +23,8 @@ Minitest >= 5.0.0
 
 ## Usage
 
-Just pass `--fail` as an argument while running your tests
+Pass `--fail` as an argument while running your tests or require
+'`minitest/fail` in your tests.
 
 ## Contributing
 

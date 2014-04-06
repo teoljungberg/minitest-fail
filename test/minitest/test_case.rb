@@ -2,10 +2,18 @@ require 'minitest/autorun'
 require 'stringio'
 
 $:<< File.join(File.dirname(__FILE__), '../../lib')
-require 'minitest/fail'
 
 module Minitest
-  class TestCase < Minitest::Test
+  class TestCase < Test
+    def setup
+      self.reporter = CompositeReporter.new
+      self.reporter << SummaryReporter.new(io)
+      self.reporter << ProgressReporter.new(io)
+    end
+    attr_accessor :reporter
+
+    private
+
     def io
       @io ||= StringIO.new ""
     end
@@ -20,8 +28,6 @@ module Minitest
         end
       }
     end
-
-    private
 
     def fail_off!
       Fail.instance_variable_set("@fail", false)
