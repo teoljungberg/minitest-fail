@@ -11,8 +11,6 @@ module Minitest
     def test_fail_bang
       activate_fail!
       assert Fail.fail?
-    ensure
-      fail_off!
     end
   end
 
@@ -27,8 +25,6 @@ module Minitest
       exp_error = %r(Empty test #<Class:(.*)>#test_empty)
 
       assert_match exp_error, io.string
-    ensure
-      fail_off!
     end
 
     def test_integration_fail_needs_to_be_activated
