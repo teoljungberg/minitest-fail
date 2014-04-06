@@ -15,26 +15,26 @@ module Minitest
   end
 
   class FailIntegrationTest < TestCase
-    def test_integration_represent_empty_tests_as_failures
-      activate_fail!
+    def exp_error
+      %r(Empty test #<Class:(.*)>#test_empty)
+    end
 
+    def run_tests
       reporter.start
       reporter.record example_test.new(:test_empty).run
       reporter.report
+    end
 
-      exp_error = %r(Empty test #<Class:(.*)>#test_empty)
+    def test_integration_represent_empty_tests_as_failures
+      activate_fail!
+      run_tests
 
       assert_match exp_error, io.string
     end
 
     def test_integration_fail_needs_to_be_activated
       fail_off!
-
-      reporter.start
-      reporter.record example_test.new(:test_empty).run
-      reporter.report
-
-      exp_error = %r(Empty test, #<Class:(.*)>#test_empty)
+      run_tests
 
       refute_match exp_error, io.string
     end
