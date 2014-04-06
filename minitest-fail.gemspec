@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version       = "0.0.1"
   spec.authors       = ["Teo Ljungberg"]
   spec.email         = ["teo.ljungberg@gmail.com"]
-  spec.summary       = %q{omg}
+  spec.summary       = %q{Make an empty test fail}
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/teoljungberg/minitest-fail"
   spec.license       = "MIT"
