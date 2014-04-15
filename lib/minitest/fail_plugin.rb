@@ -28,11 +28,24 @@ module Minitest
         empty_test = result.method(result.name).source_location
         e          = ::Minitest::Assertion.new "Empty test <#{result}>"
 
-        e.class.send :define_method, :location, -> { empty_test.join(":") }
+        define_and_redefine e.class, :location do
+          -> { empty_test.join(":") }
+        end
 
         result.failures << e
         self.results    << result
       end
+    end
+
+    private
+
+    def define_and_redefine klass, method
+      return unless block_given?
+
+      if klass.send :method_defined?, method
+        klass.send :remove_method, method
+      end
+      klass.send :define_method, method, yield
     end
   end
 end
