@@ -16,7 +16,7 @@ module Minitest
 
   class FailIntegrationTest < TestCase
     def exp_error
-      %r(Empty test <#<Class:(.*)>#test_empty>)
+      /Empty test <#<Class:(.*)>#test_empty>/
     end
 
     def run_tests
