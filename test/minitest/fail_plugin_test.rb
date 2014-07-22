@@ -16,7 +16,7 @@ module Minitest
 
   class FailIntegrationTest < TestCase
     def exp_error
-      /Empty test <#<Class:(.*)>#test_empty>/
+      /You have skipped tests/
     end
 
     def run_tests
@@ -25,7 +25,7 @@ module Minitest
       reporter.report
     end
 
-    def test_integration_represent_empty_tests_as_failures
+    def test_integration_skips_empty_tests
       activate_fail!
       run_tests
 

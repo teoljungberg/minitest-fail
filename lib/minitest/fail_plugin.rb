@@ -26,7 +26,7 @@ module Minitest
       super
       if result.assertions.zero?
         empty_test = result.method(result.name).source_location
-        e          = ::Minitest::Assertion.new "Empty test <#{result}>"
+        e          = ::Minitest::Skip.new "Implement #{result.class}##{result.name}"
 
         redefine_method e.class, :location do
           -> { empty_test.join(":") }
